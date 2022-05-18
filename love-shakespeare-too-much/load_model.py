@@ -14,7 +14,7 @@ def load_model(path, params, ModelClass):
     return char_model
 
 
-with open('token_to_id.json', 'rb') as f:
+with open('token_to_id_bck.json', 'rb') as f:
     token_to_id = json.load(f)
 
 id_to_token = dict((idx, t) for t, idx in token_to_id.items())
@@ -33,6 +33,6 @@ char_lstm = load_model(PATH_LSTM, fit_params, CharLSTMCell)
 def get_raw():
     hid_state = char_lstm.initial_state(batch_size=1)
     sample = generate_sample(
-        char_lstm, hid_state, token_to_id, id_to_token, temperature=0.5
+        char_lstm, hid_state, token_to_id, id_to_token, temperature=0.9, seed_phrase="S"
     )
     return sample

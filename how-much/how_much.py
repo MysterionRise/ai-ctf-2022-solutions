@@ -1,4 +1,6 @@
+import pickle
 from tensorflow import keras
-from keras.saving import pickle_utils
 
-model = keras.models.load_model('path/to/location')
+with open("model_ex.pkl", "rb") as f:
+    model = pickle.load(f)
+    print(model)
